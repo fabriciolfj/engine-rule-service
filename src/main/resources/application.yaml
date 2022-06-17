@@ -1,0 +1,28 @@
+server:
+  shutdown: GRACEFUL
+  port: 9090
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 3
+      idle-timeout: 10000
+    url: jdbc:postgresql://localhost:5432/postgres
+    password: root
+    username: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    show-sql: true
+  flyway:
+    locations:
+      - classpath:db/migration
