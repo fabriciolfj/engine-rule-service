@@ -1,5 +1,7 @@
 package com.github.fabriciolfj.engineruleservice.exceptions.handler;
 
+import com.github.fabriciolfj.engineruleservice.exceptions.BusinessRateExistsException;
+import com.github.fabriciolfj.engineruleservice.exceptions.BusinessRateNotFoundException;
 import com.github.fabriciolfj.engineruleservice.exceptions.model.Error;
 import com.github.fabriciolfj.engineruleservice.exceptions.model.ErrorDetails;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,22 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler {
 
     private final MessageSource messageSource;
+
+    @ExceptionHandler(BusinessRateExistsException.class)
+    public ResponseEntity<Error> handleBusinessRateExistsException(final BusinessRateExistsException e) {
+        return ResponseEntity
+                .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(Error.builder().code(String.valueOf(HttpStatus.UNPROCESSABLE_ENTITY.value()))
+                        .message(e.getMessage()).build());
+    }
+
+    @ExceptionHandler(BusinessRateNotFoundException.class)
+    public ResponseEntity<Error> handleBusinessRateNotFoundException(final BusinessRateNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Error.builder().code(String.valueOf(HttpStatus.NOT_FOUND.value()))
+                        .message(e.getMessage()).build());
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {

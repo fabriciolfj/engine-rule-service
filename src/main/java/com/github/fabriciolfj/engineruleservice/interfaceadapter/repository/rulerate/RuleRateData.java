@@ -20,9 +20,9 @@ public class RuleRateData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "date_minimum", columnDefinition = "TIMESTAMP", nullable = false)
+    @Column(name = "date_minimum", columnDefinition = "DATE", nullable = false)
     private LocalDate dateMinimum;
-    @Column(name = "date_maximum", columnDefinition = "TIMESTAMP", nullable = false)
+    @Column(name = "date_maximum", columnDefinition = "DATE", nullable = false)
     private LocalDate dateMaximum;
     @Column(name = "value_minimum", nullable = false)
     private BigDecimal valueMinimum;

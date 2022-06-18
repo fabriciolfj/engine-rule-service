@@ -22,6 +22,6 @@ public record RuleRate(
     }
 
     public boolean isScoreValid(final Integer value) {
-        return scoreMinimum >= value  && scoreMaximum <= value;
+        return value >= scoreMinimum  && value <= scoreMaximum;
     }
 }
