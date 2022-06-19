@@ -34,7 +34,6 @@ public class RuleRateController {
     public RuleRateResponse findRule(@Valid @RequestBody final FindRuleRequest request) {
         var domain = findRate.execute(FindRuleDtoConverter.toCommand(request));
         return new RuleRateResponse(domain.rate());
-
     }
 
 }
