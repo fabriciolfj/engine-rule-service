@@ -14,7 +14,7 @@ spring:
       maximum-pool-size: 5
       minimum-idle: 3
       idle-timeout: 10000
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5433/postgres
     password: root
     username: root
   jpa:
