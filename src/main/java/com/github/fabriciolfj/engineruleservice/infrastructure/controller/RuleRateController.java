@@ -2,7 +2,6 @@ package com.github.fabriciolfj.engineruleservice.infrastructure.controller;
 
 import com.github.fabriciolfj.engineruleservice.business.usecase.CreateRuleRate;
 import com.github.fabriciolfj.engineruleservice.business.usecase.FindRate;
-import com.github.fabriciolfj.engineruleservice.entities.RuleRate;
 import com.github.fabriciolfj.engineruleservice.infrastructure.converter.FindRuleDtoConverter;
 import com.github.fabriciolfj.engineruleservice.infrastructure.converter.RuleRateDtoConverter;
 import com.github.fabriciolfj.engineruleservice.infrastructure.dto.request.FindRuleRequest;
@@ -29,7 +28,7 @@ public class RuleRateController {
         createRuleRate.execute(domain);
     }
 
-    @GetMapping
+    @PutMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
     public RuleRateResponse findRule(@Valid @RequestBody final FindRuleRequest request) {
         var domain = findRate.execute(FindRuleDtoConverter.toCommand(request));
