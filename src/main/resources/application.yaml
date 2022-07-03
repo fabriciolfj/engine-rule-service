@@ -9,6 +9,19 @@ server:
       min-spare: 5
 
 spring:
+  application:
+    name: rule
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+  cloud:
+    stream:
+      function:
+        definition: reset-withdraw
+      bindings:
+        reset-withdraw-int-0:
+          destination: reset-withdraw
+          group: ${spring.application.name}
   datasource:
     hikari:
       maximum-pool-size: 5
