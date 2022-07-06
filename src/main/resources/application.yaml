@@ -19,7 +19,9 @@ spring:
       function:
         definition: reset-withdraw
       bindings:
-        reset-withdraw-int-0:
+        resetWithdraw-out-0:
+          destination: update-withdraw
+        resetWithdraw-int-0:
           destination: reset-withdraw
           group: ${spring.application.name}
   datasource:

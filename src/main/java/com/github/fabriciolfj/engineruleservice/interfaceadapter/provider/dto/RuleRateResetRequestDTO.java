@@ -1,23 +1,20 @@
-package com.github.fabriciolfj.engineruleservice.infrastructure.dto.request;
+package com.github.fabriciolfj.engineruleservice.interfaceadapter.provider.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.fabriciolfj.engineruleservice.exceptions.annotations.ValidateFormatDate;
-import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class FindRuleRequest {
+public record RuleRateResetRequestDTO(
         @JsonProperty("birthday")
         @ValidateFormatDate(message = "{findrule.date}")
-        private String birthday;
+        String birthday,
         @NotNull(message = "{findrule.value}")
-        private BigDecimal value;
+        BigDecimal value,
         @NotNull(message = "{findrule.score}")
-        private Integer score;
+        Integer score,
+        @NotNull(message = "{findrule.account}")
+        String account
+) {
 }
