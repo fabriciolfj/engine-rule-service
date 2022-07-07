@@ -13,7 +13,8 @@ public record RuleRate(
         BigDecimal valueMaximum,
         BigDecimal rate,
         Integer scoreMinimum,
-        Integer scoreMaximum) {
+        Integer scoreMaximum,
+        Integer withdraw) {
 
     private static final Integer VALUE_COMPARATOR = 0;
 

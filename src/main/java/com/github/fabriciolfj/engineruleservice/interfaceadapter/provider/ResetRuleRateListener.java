@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 @RequiredArgsConstructor
@@ -26,14 +27,17 @@ public class ResetRuleRateListener {
         return msg -> {
             log.info("Message received: {}", msg);
             var value = toDto(msg);
+
             var rule = findRate.execute(RuleRateResetMapper.toCommand(value));
+            log.info("Rule reset to: {}", rule);
+
             return toMsg(rule, value);
         };
     }
 
     private String toMsg(final RuleRate rule, final RuleRateResetRequestDTO dto) {
         try {
-            var response = new RuleRateResetResponseDTO(rule.rate(), dto.account());
+            var response = new RuleRateResetResponseDTO(rule.rate(), rule.withdraw(), dto.account());
             return objectMapper.writeValueAsString(response);
         } catch (Exception e) {
             log.error("Fail convert objecto to json, detail {}", e.getMessage());

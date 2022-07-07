@@ -18,6 +18,7 @@ public class RuleRateDtoConverter {
                 .scoreMaximum(request.scoreMaximum())
                 .dateMinimum(request.dateMinimum())
                 .dateMaximum(request.dateMaximum())
+                .withdraw(request.withdraw())
                 .build();
     }
 }

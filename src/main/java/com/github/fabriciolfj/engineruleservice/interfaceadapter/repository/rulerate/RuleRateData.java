@@ -34,4 +34,5 @@ public class RuleRateData {
     private Integer scoreMinimum;
     @Column(name = "score_maximum", nullable = false)
     private Integer scoreMaximum;
+    private Integer withdraw;
 }

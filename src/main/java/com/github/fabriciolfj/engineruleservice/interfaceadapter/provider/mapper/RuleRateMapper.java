@@ -18,6 +18,7 @@ public class RuleRateMapper {
                 .scoreMinimum(data.getScoreMinimum())
                 .valueMaximum(data.getValueMaximum())
                 .valueMinimum(data.getValueMinimum())
+                .withdraw(data.getWithdraw())
                 .build();
     }
 
@@ -31,6 +32,7 @@ public class RuleRateMapper {
                 .scoreMinimum(domain.scoreMinimum())
                 .valueMaximum(domain.valueMaximum())
                 .valueMinimum(domain.valueMinimum())
+                .withdraw(domain.withdraw())
                 .build();
     }
 }

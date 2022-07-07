@@ -26,5 +26,6 @@ public interface RulesRateRepository extends JpaRepository<RuleRateData, Long> {
                                    final BigDecimal valueMinimum,
                                    final BigDecimal rate,
                                    final Integer scoreMinimum,
-                                   final Integer scoreMaximum);
+                                   final Integer scoreMaximum,
+                                   final Integer withdraw);
 }

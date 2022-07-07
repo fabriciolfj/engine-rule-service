@@ -6,5 +6,6 @@ create table rules_rate(
   value_maximum float8 not null,
   rate float8 not null,
   score_minimum float8 not null,
-  score_maximum float8 not null
+  score_maximum float8 not null,
+  withdraw int not null
 )

@@ -32,7 +32,7 @@ public class RuleRateController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public RuleRateResponse findRule(@Valid @RequestBody final FindRuleRequest request) {
         var domain = findRate.execute(FindRuleDtoConverter.toCommand(request));
-        return new RuleRateResponse(domain.rate());
+        return new RuleRateResponse(domain.rate(), domain.withdraw());
     }
 
 }

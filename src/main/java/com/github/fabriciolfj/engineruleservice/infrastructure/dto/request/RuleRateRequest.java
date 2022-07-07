@@ -30,6 +30,8 @@ public record RuleRateRequest(
         Integer scoreMinimum,
         @JsonProperty("score_maximum")
         @NotNull(message = "{rulerate.scoremaximum}")
-        Integer scoreMaximum
+        Integer scoreMaximum,
+        @NotNull(message = "{rulerate.withdraw}")
+        Integer withdraw
 ) {
 }

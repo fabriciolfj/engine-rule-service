@@ -14,16 +14,20 @@ spring:
   kafka:
     bootstrap-servers:
       - localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+    listener:
+      missing-topics-fatal: false
   cloud:
     stream:
-      function:
-        definition: reset-withdraw
       bindings:
         resetWithdraw-out-0:
-          destination: update-withdraw
-        resetWithdraw-int-0:
-          destination: reset-withdraw
-          group: ${spring.application.name}
+          destination: update-withdraw-group
+          content-type: application/json
+        resetWithdraw-in-0:
+          destination: reset-withdraw-group
+          content-type: application/json
+          group: '${spring.application.name}'
   datasource:
     hikari:
       maximum-pool-size: 5

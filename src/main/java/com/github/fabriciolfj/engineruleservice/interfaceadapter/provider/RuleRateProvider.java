@@ -31,7 +31,8 @@ public class RuleRateProvider {
                 ruleRate.valueMinimum(),
                 ruleRate.rate(),
                 ruleRate.scoreMinimum(),
-                ruleRate.scoreMaximum())
+                ruleRate.scoreMaximum(),
+                ruleRate.withdraw())
                 .map(RuleRateMapper::toDomain);
     }
 
