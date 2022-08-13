@@ -45,3 +45,5 @@ spring:
   flyway:
     locations:
       - classpath:db/migration
+
+loan: 0.76

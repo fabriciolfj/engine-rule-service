@@ -14,6 +14,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,36 @@ public class RestExceptionHandler {
                         .message("validação dos campos da requisição")
                         .details(mappingError(e))
                         .build());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity handleConstraintViolationException(final ConstraintViolationException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Error.builder()
+                        .code(HttpStatus.BAD_REQUEST.toString())
+                        .message("validação dos campos da requisição")
+                        .details(mappingError(e))
+                        .build());
+    }
+
+    private List<ErrorDetails> mappingError(final ConstraintViolationException e) {
+        return e.getConstraintViolations()
+                .stream().map(obj -> {
+                    final String message = obj.getMessage();
+                    final String name;
+
+                    if (obj instanceof FieldError) {
+                        name = ((FieldError) obj).getField();
+                    } else {
+                        name = obj.getPropertyPath().toString();
+                    }
+
+                    return ErrorDetails
+                            .builder()
+                            .field(name)
+                            .message(message)
+                            .build();
+                }).collect(Collectors.toList());
     }
 
     private List<ErrorDetails> mappingError(final MethodArgumentNotValidException e) {
